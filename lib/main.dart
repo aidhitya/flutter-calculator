@@ -99,6 +99,20 @@ class _CalculatorState extends State<Calculator> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                    '0',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(color: Colors.black, fontSize: 45),
+                  ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 numberButton('C', 40),
                 numberButton('+/-', 40),
@@ -107,6 +121,7 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 numberButton('7', 40),
                 numberButton('8', 40),
@@ -115,6 +130,7 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 numberButton('4', 40),
                 numberButton('5', 40),
@@ -123,6 +139,7 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 numberButton('1', 40),
                 numberButton('2', 40),
@@ -131,6 +148,7 @@ class _CalculatorState extends State<Calculator> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 numberButton('0', 40),
                 numberButton('.', 50),
