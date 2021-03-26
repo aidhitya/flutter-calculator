@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +30,9 @@ class _CalculatorState extends State<Calculator> {
           width: 105,
           height: 105,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              calculation(txtop);
+            },
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.grey[200])),
@@ -53,7 +56,9 @@ class _CalculatorState extends State<Calculator> {
           width: 105,
           height: 105,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              calculation(txtop);
+            },
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.white)),
@@ -111,19 +116,22 @@ class _CalculatorState extends State<Calculator> {
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    '0',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.black, fontSize: 45),
-                  ),
-                )
-              ],
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      '$text',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(color: Colors.black, fontSize: 35),
+                    ),
+                  )
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -172,7 +180,9 @@ class _CalculatorState extends State<Calculator> {
                       width: 105,
                       height: 105,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          calculation('=');
+                        },
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all<Color>(Colors.orange),
@@ -196,5 +206,40 @@ class _CalculatorState extends State<Calculator> {
         ),
       ),
     );
+  }
+
+  //Calculator logic
+  dynamic text = '0';
+
+  dynamic result = '';
+  dynamic finalResult = '';
+  void calculation(btnText) {
+    if (btnText == 'C') {
+      text = '0';
+      result = '';
+      finalResult = '0';
+    } else if (btnText == '=') {
+      var f = text.replaceAll(RegExp(r'x'), '*');
+      Parser math = Parser();
+      Expression exp = math.parse(f);
+      String yes = exp.evaluate(EvaluationType.REAL, null).toString();
+      if (yes.contains('.')) {
+        List<String> splitDecimal = yes.split('.');
+        if (!(int.parse(splitDecimal[1]) > 0)) {
+          finalResult = splitDecimal[0].toString();
+        } else {
+          finalResult = yes;
+        }
+      }
+      text = '0';
+      result = '';
+    } else {
+      result = result + btnText;
+      finalResult = result;
+    }
+
+    setState(() {
+      text = finalResult;
+    });
   }
 }
