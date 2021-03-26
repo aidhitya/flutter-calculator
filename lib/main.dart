@@ -28,14 +28,21 @@ class _CalculatorState extends State<Calculator> {
         child: SizedBox(
           width: 105,
           height: 105,
-          child: Card(
-              color: Colors.grey[200],
-              child: Align(
-                child: Text(
-                  txtop,
-                  style: TextStyle(color: Colors.orange, fontSize: sizeF),
-                ),
-              )),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.grey[200])),
+            child: Card(
+                elevation: 0,
+                color: Colors.grey[200],
+                child: Align(
+                  child: Text(
+                    txtop,
+                    style: TextStyle(color: Colors.orange, fontSize: sizeF),
+                  ),
+                )),
+          ),
         ));
   }
 
@@ -45,14 +52,21 @@ class _CalculatorState extends State<Calculator> {
         child: SizedBox(
           width: 105,
           height: 105,
-          child: Card(
-              color: Colors.white,
-              child: Align(
-                child: Text(
-                  txtop,
-                  style: TextStyle(color: Colors.black, fontSize: sizeF),
-                ),
-              )),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.white)),
+            child: Card(
+                elevation: 0,
+                color: Colors.white,
+                child: Align(
+                  child: Text(
+                    txtop,
+                    style: TextStyle(color: Colors.black, fontSize: sizeF),
+                  ),
+                )),
+          ),
         ));
   }
 
@@ -117,7 +131,7 @@ class _CalculatorState extends State<Calculator> {
                 numberButton('C', 40),
                 numberButton('+/-', 40),
                 numberButton('%', 40),
-                numberButton('DEL', 40),
+                numberButton('DEL', 35),
               ],
             ),
             Row(
@@ -157,15 +171,23 @@ class _CalculatorState extends State<Calculator> {
                     child: SizedBox(
                       width: 105,
                       height: 105,
-                      child: Card(
-                          color: Colors.orange,
-                          child: Align(
-                            child: Text(
-                              '=',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 40),
-                            ),
-                          )),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.orange),
+                        ),
+                        child: Card(
+                            elevation: 0,
+                            color: Colors.orange,
+                            child: Align(
+                              child: Text(
+                                '=',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 40),
+                              ),
+                            )),
+                      ),
                     )),
                 operatorButton('+', 45),
               ],
